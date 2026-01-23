@@ -18,4 +18,16 @@ By completing this workshop, participants will learn how to:
 
 ---
 
+## Getting Started
+ - Signup for [Databricks free edition](https://login.databricks.com/signup?provider=DB_FREE_TIER&dbx_source=www&itm_data=dbx-web&l=en-EN) if not alredy.
+ Login to Databricks workspace.
 
+ - Login to the Databricks workspace.
+
+ - Click on "Workspace" -> Create -> Git as shown in the image below to import the git repo.
+ <img src="./images/CreateGit.png" alt="Create Git" width="1200" height="150">
+
+ - Import the git repo - https://github.com/himanshuguptadb/UUIC_Workshop as shown in the image below.
+  <img src="./images/ImportGit.png" alt="Import Git" width="500" height="250">
+
+ - This will create a folder "UUIC_Workshop" in your workspace. Open the notebook "setup" and click on "Run All"
