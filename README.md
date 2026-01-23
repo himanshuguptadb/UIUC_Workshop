@@ -30,4 +30,7 @@ By completing this workshop, participants will learn how to:
  - Import the git repo - https://github.com/himanshuguptadb/UUIC_Workshop as shown in the image below.
   <img src="./images/ImportGit.png" alt="Import Git" width="500" height="250">
 
- - This will create a folder "UUIC_Workshop" in your workspace. Open the notebook "setup" and click on "Run All"
+ - This will create a folder "UUIC_Workshop" in your workspace. Open the notebook "setup" and click on "Run All" as shown in the image below.
+ <img src="./images/setup.png" alt="Import Git" width="1200" height="250">
+
+ - You have now completed the data setup for the workshop.
