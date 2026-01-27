@@ -1,4 +1,4 @@
-# UUIC Workshop – Genie, AI/BI dashboards, Unity Catalog
+# UIUC Workshop – Genie, AI/BI dashboards, Unity Catalog
 
 This repository contains hands-on workshop material focusing on **AI/BI Dashboards**, specifically **Genie** using **SQL/Python and Unity Catalog**.
 
@@ -27,10 +27,10 @@ By completing this workshop, participants will learn how to:
  - Click on "Workspace" -> Create -> Git as shown in the image below to import the git repo.
  <img src="./images/CreateGit.png" alt="Create Git" width="1200" height="150">
 
- - Import the git repo - https://github.com/himanshuguptadb/UUIC_Workshop as shown in the image below.
+ - Import the git repo - https://github.com/himanshuguptadb/UIUC_Workshop as shown in the image below.
   <img src="./images/ImportGit.png" alt="Import Git" width="500" height="250">
 
- - This will create a folder "UUIC_Workshop" in your workspace. Open the notebook "setup" and click on "Run All" as shown in the image below.
+ - This will create a folder "UIUC_Workshop" in your workspace. Open the notebook "setup" and click on "Run All" as shown in the image below.
  <img src="./images/setup.png" alt="Import Git" width="1200" height="250">
 
  - You have now completed the data setup for the workshop.
