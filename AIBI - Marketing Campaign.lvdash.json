@@ -145,7 +145,6 @@
         "WITH CampaignData AS (\n",
         "    SELECT \n",
         "        e.campaign_id,\n",
-        "        explode(collect_set(e.metadata.cta)) as cta,\n",
         "        to_timestamp(first(c.start_date)) as _start_date,\n",
         "        to_timestamp(first(c.end_date)) as _end_date,\n",
         "        SUM(CASE WHEN e.event_type = 'delivered' THEN 1 ELSE 0 END) AS total_delivered,\n",
@@ -160,12 +159,12 @@
         "        e.campaign_id\n",
         ")\n",
         "\n",
-        "SELECT sum(unique_clicks) as unique_clicks, cta, campaign_id\n",
+        "SELECT sum(unique_clicks) as unique_clicks, campaign_id\n",
         "FROM CampaignData\n",
         "WHERE \n",
         "    _start_date >= :start_date AND\n",
         "    _end_date <= :end_date\n",
-        "GROUP BY cta, campaign_id\n",
+        "GROUP BY all\n",
         "LIMIT 20"
       ],
       "parameters": [
@@ -178,7 +177,7 @@
               "dataType": "DATE",
               "values": [
                 {
-                  "value": "now-1y/y"
+                  "value": "2024-01-01T00:00:00.000"
                 }
               ]
             }
@@ -402,7 +401,6 @@
         "    e.event_id,\n",
         "    e.event_type,\n",
         "    e.event_date,\n",
-        "    e.metadata,\n",
         "    c.campaign_name,\n",
         "    c.campaign_description,\n",
         "    c.subject_line,\n",
@@ -410,7 +408,6 @@
         "    c.cost,\n",
         "    c.start_date,\n",
         "    c.end_date,\n",
-        "    c.mailing_list,\n",
         "    ct.department,\n",
         "    ct.job_title,\n",
         "    ct.source,\n",
@@ -442,7 +439,7 @@
               "dataType": "DATE",
               "values": [
                 {
-                  "value": "now-1y/y"
+                  "value": "2024-01-01T00:00:00.000"
                 }
               ]
             }
@@ -2346,7 +2343,7 @@
             "name": "add87561",
             "queries": [
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb6113384a87426f25a4159_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115c9adcb7077a1114afc_start_date",
                 "query": {
                   "datasetName": "72b7d899",
                   "parameters": [
@@ -2359,7 +2356,7 @@
                 }
               },
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb6109e8524b15a586a815c_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb1152b86d9c277e3150120_start_date",
                 "query": {
                   "datasetName": "8ab1ca38",
                   "parameters": [
@@ -2372,7 +2369,7 @@
                 }
               },
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb610eca013a330d88a3f2a_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb11585bc172effa1dea58e_start_date",
                 "query": {
                   "datasetName": "d9196d0a",
                   "parameters": [
@@ -2385,7 +2382,7 @@
                 }
               },
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb611409c3be8381ab5820f_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115d48138316d26f5c8af_start_date",
                 "query": {
                   "datasetName": "073eed09",
                   "parameters": [
@@ -2398,7 +2395,7 @@
                 }
               },
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb611198454525b96a26728_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115b49dc51f4bcec1166e_start_date",
                 "query": {
                   "datasetName": "31bd8516",
                   "parameters": [
@@ -2411,7 +2408,7 @@
                 }
               },
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb6110ca78f575297b4cfdf_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115a895f4ec941e727b73_start_date",
                 "query": {
                   "datasetName": "09d20820",
                   "parameters": [
@@ -2424,7 +2421,7 @@
                 }
               },
               {
-                "name": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb610febbac5c8fa1b642dd_start_date",
+                "name": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb1159ba7e1581066ce5919_start_date",
                 "query": {
                   "datasetName": "023bfe11",
                   "parameters": [
@@ -2444,37 +2441,49 @@
                 "fields": [
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb6113384a87426f25a4159_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115c9adcb7077a1114afc_start_date"
                   },
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb6109e8524b15a586a815c_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb1152b86d9c277e3150120_start_date"
                   },
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb610eca013a330d88a3f2a_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb11585bc172effa1dea58e_start_date"
                   },
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb611409c3be8381ab5820f_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115d48138316d26f5c8af_start_date"
                   },
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb611198454525b96a26728_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115b49dc51f4bcec1166e_start_date"
                   },
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb6110ca78f575297b4cfdf_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb115a895f4ec941e727b73_start_date"
                   },
                   {
                     "parameterName": "start_date",
-                    "queryName": "parameter_dashboards/01f06e53bdb51b8798c7993262e58d96/datasets/01f06e53bdb610febbac5c8fa1b642dd_start_date"
+                    "queryName": "parameter_dashboards/01f0fc7a1cb01bf895e7efd2dca47549/datasets/01f0fc7a1cb1159ba7e1581066ce5919_start_date"
                   }
                 ]
               },
               "frame": {
                 "showTitle": true,
                 "title": "Start Date"
+              },
+              "selection": {
+                "defaultSelection": {
+                  "values": {
+                    "dataType": "DATE",
+                    "values": [
+                      {
+                        "value": "2024-01-01T00:00:00.000"
+                      }
+                    ]
+                  }
+                }
               }
             }
           },
@@ -3653,6 +3662,7 @@
         "#BF7080"
       ],
       "widgetHeaderAlignment": "LEFT"
-    }
+    },
+    "applyModeEnabled": false
   }
 }
